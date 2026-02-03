@@ -671,7 +671,5 @@ npm install
 
 **Made with ❤️ for the Legal Community**
 
-[![GitHub stars](https://img.shields.io/github/stars/your-username/kanoonu-ai?style=social)](https://github.com/your-username/kanoonu-ai/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/your-username/kanoonu-ai?style=social)](https://github.com/your-username/kanoonu-ai/network/members)
 
 </div>
