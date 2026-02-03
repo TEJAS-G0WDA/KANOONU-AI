@@ -1,0 +1,1 @@
+Make usre you place the FineTuned Gemma Model in the model folder.

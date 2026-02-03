@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Law Search - Kanoonu AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
+</head>
+<body class="theme-law font-sans">
+    <nav class="brand-gradient sticky-nav shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="/" class="text-2xl font-bold text-white">Kanoonu AI</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="/" class="nav-link">Home</a>
+                        <a href="/chatbot" class="nav-link">Chatbot</a>
+                        <a href="/case-law-search" class="nav-link active">Case Law Search</a>
+                        <a href="/lawyers" class="nav-link">Lawyers</a>
+                        <a href="/admin" class="nav-link">Admin</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button type="button" class="text-white hover:text-blue-200 focus:outline-none focus:text-blue-200" onclick="toggleMobileMenu()">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobileMenu" class="md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-blue-800">
+                <a href="/" class="nav-link block">Home</a>
+                <a href="/chatbot" class="nav-link block">Chatbot</a>
+                <a href="/case-law-search" class="nav-link block">Case Law Search</a>
+                <a href="/lawyers" class="nav-link block">Lawyers</a>
+                <a href="/admin" class="nav-link block">Admin</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-900 mb-2">Case Law Search</h1>
+            <p class="text-gray-600">Search indiankanoon.org and get AI explanations</p>
+        </div>
+
+        <div class="glass rounded-2xl shadow p-6">
+            <form method="POST" action="/case-law-search" class="flex space-x-4">
+                <input type="text" name="query" placeholder="Search case law (e.g., 498A bail)" class="flex-1 form-input" required>
+                <button type="submit" class="btn-primary btn-glow">Search</button>
+            </form>
+            <div class="mt-8 space-y-4">
+                {% if cases is not none %}
+                    {% if cases|length == 0 %}
+                        <p class="text-gray-300">No relevant case results found. Try a different legal keyword.</p>
+                    {% else %}
+                        {% for c in cases %}
+                            <div class="p-4 glass rounded-xl border gold-border">
+                                <h3 class="text-lg font-semibold"><a href="{{ c.link }}" target="_blank" class="gold-text hover:underline">{{ c.title }}</a></h3>
+                                <p class="text-sm text-gray-200 mt-2 whitespace-pre-wrap">{{ c.summary }}</p>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    <!-- Mobile Bottom Nav -->
+    <div class="md:hidden bottom-nav glass border-t border-gray-700">
+        <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between text-sm">
+            <a href="/" class="text-gray-200">Home</a>
+            <a href="/chatbot" class="text-gray-200">Chat</a>
+            <a href="/case-law-search" class="text-gray-200">Cases</a>
+            <a href="/lawyers" class="text-gray-200">Lawyers</a>
+            <a href="/admin" class="text-gray-200">Admin</a>
+        </div>
+    </div>
+    </div>
+
+    <footer class="footer mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold mb-4">Kanoonu AI</h3>
+                <div class="flex justify-center space-x-6 mb-4">
+                    <a href="/" class="text-gray-300 hover:text-white transition-colors">Home</a>
+                    <a href="/chatbot" class="text-gray-300 hover:text-white transition-colors">Chatbot</a>
+                    <a href="/case-law-search" class="text-gray-300 hover:text-white transition-colors">Case Law Search</a>
+                    <a href="/lawyers" class="text-gray-300 hover:text-white transition-colors">Lawyers</a>
+                </div>
+                <p class="text-gray-400 text-sm">© 2024 Kanoonu AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script></script>
+</body>
+</html>
+
+

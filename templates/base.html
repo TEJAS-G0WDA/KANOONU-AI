@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>{% block title %}KanoonuAI - Premium Legal AI Platform{% endblock %}</title>
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="{{ url_for('static', filename='css/style.css') }}?v=2.0" rel="stylesheet">
+    {% block head %}{% endblock %}
+    <style>
+        .container-narrow { max-width: 780px; }
+        /* Force visible changes - TEST */
+        body { 
+            background: #0a0a1a !important;
+            color: #f1f5f9 !important;
+        }
+        nav { 
+            background: rgba(10, 10, 26, 0.8) !important;
+            backdrop-filter: blur(20px) !important;
+        }
+    </style>
+</head>
+<body class="theme-law">
+    <nav class="sticky-nav" id="mainNav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="h-20 flex items-center justify-between">
+                <a href="/" class="flex items-center gap-3 group">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-lg group-hover:shadow-glow transition-all duration-300 transform group-hover:scale-110">
+                        <span class="text-2xl">⚖️</span>
+                    </div>
+                    <div>
+                        <span class="heading text-2xl font-bold gradient-text block">KanoonuAI</span>
+                        <span class="text-xs text-secondary-light font-medium">Legal Intelligence</span>
+                    </div>
+                </a>
+                <div class="hidden md:flex items-center gap-2">
+                    {% set p = request.path %}
+                    <a href="/" class="nav-link {{ 'active' if p=='/' else '' }}">Home</a>
+                    <a href="/chatbot" class="nav-link {{ 'active' if p.startswith('/chatbot') else '' }}">Chatbot</a>
+                    <a href="/case-law-search" class="nav-link {{ 'active' if p.startswith('/case-law-search') else '' }}">Case Law</a>
+                    <a href="/lawyers" class="nav-link {{ 'active' if p.startswith('/lawyers') else '' }}">Lawyers</a>
+                    <a href="/admin" class="nav-link {{ 'active' if p.startswith('/admin') else '' }}">Admin</a>
+                </div>
+                <button class="md:hidden p-3 glass rounded-lg hover-lift" onclick="document.getElementById('mnav').classList.toggle('hidden')">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mnav" class="md:hidden hidden border-t border-glass-border glass-soft">
+            <div class="px-4 py-4 flex flex-col gap-2">
+                <a href="/" class="nav-link block">Home</a>
+                <a href="/chatbot" class="nav-link block">Chatbot</a>
+                <a href="/case-law-search" class="nav-link block">Case Law</a>
+                <a href="/lawyers" class="nav-link block">Lawyers</a>
+                <a href="/admin" class="nav-link block">Admin</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="min-h-[calc(100vh-8rem)]">{% block content %}{% endblock %}</main>
+
+    <footer>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row gap-6 md:items-center md:justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center">
+                        <span class="text-xl">⚖️</span>
+                    </div>
+                    <div>
+                        <div class="heading text-lg font-bold gradient-text">KanoonuAI</div>
+                        <div class="text-sm text-text-muted">© {{ 2024 }} All rights reserved.</div>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-4 text-sm">
+                    <a href="/" class="nav-link text-text-secondary hover:text-text-primary">Home</a>
+                    <a href="/chatbot" class="nav-link text-text-secondary hover:text-text-primary">Chatbot</a>
+                    <a href="/case-law-search" class="nav-link text-text-secondary hover:text-text-primary">Case Law</a>
+                    <a href="/lawyers" class="nav-link text-text-secondary hover:text-text-primary">Lawyers</a>
+                    <a href="/admin" class="nav-link text-text-secondary hover:text-text-primary">Admin</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Nav scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('mainNav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    </script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
+
+

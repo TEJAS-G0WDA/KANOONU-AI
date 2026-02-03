@@ -1,0 +1,26 @@
+###############################################
+# Kanoonu AI - Backend Requirements
+# NOTE: For GPU acceleration on RTX 3050, install CUDA-enabled PyTorch separately.
+#   Example (CUDA 12.1):
+#   pip install --upgrade torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+###############################################
+
+# Web framework
+flask>=2.3.2
+flask-cors>=4.0.0
+
+# Hugging Face stack for local inference
+transformers>=4.44.2
+accelerate>=0.33.0
+safetensors>=0.4.3
+sentencepiece>=0.1.99
+
+# Utilities
+numpy>=1.24.0
+
+# Web scraping (for case law search)
+beautifulsoup4>=4.12.2
+requests>=2.31.0
+
+# IMPORTANT: Do NOT list plain "torch" here if you want the CUDA build.
+# Install the correct CUDA wheel as shown above before running the app.

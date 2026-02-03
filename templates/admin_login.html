@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Kanoonu AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-sans bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="max-w-md w-full space-y-8">
+        <!-- Header -->
+        <div class="text-center">
+            <div class="mx-auto h-12 w-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                <span class="text-white text-xl font-bold">K</span>
+            </div>
+            <h2 class="mt-6 text-3xl font-bold text-gray-900">Admin Login</h2>
+            <p class="mt-2 text-sm text-gray-600">Sign in to access the admin dashboard</p>
+        </div>
+
+        <!-- Login Form -->
+        <div class="bg-white rounded-lg shadow-lg p-8">
+            {% if error %}
+            <div class="mb-4 bg-red-50 border border-red-200 rounded-md p-4">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm text-red-800">{{ error }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <form method="POST" class="space-y-6">
+                <div>
+                    <label for="username" class="form-label">Username</label>
+                    <input 
+                        id="username" 
+                        name="username" 
+                        type="text" 
+                        required 
+                        class="form-input" 
+                        placeholder="Enter username"
+                        value="admin"
+                    >
+                </div>
+
+                <div>
+                    <label for="password" class="form-label">Password</label>
+                    <input 
+                        id="password" 
+                        name="password" 
+                        type="password" 
+                        required 
+                        class="form-input" 
+                        placeholder="Enter password"
+                    >
+                </div>
+
+                <div>
+                    <button type="submit" class="btn-primary w-full">
+                        Sign In
+                    </button>
+                </div>
+            </form>
+
+            <!-- Default Credentials Info -->
+            <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-md">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <svg class="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <h3 class="text-sm font-medium text-blue-800">Default Credentials</h3>
+                        <div class="mt-2 text-sm text-blue-700">
+                            <p><strong>Username:</strong> admin</p>
+                            <p><strong>Password:</strong> 1234</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back to Home -->
+        <div class="text-center">
+            <a href="/" class="text-blue-600 hover:text-blue-800 transition-colors">
+                ← Back to Home
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Auto-focus on password field if username is filled
+        document.getElementById('username').addEventListener('input', function() {
+            if (this.value === 'admin') {
+                document.getElementById('password').focus();
+            }
+        });
+
+        // Auto-fill password if username is admin
+        document.getElementById('username').addEventListener('blur', function() {
+            if (this.value === 'admin') {
+                document.getElementById('password').value = '1234';
+            }
+        });
+    </script>
+</body>
+</html>
+
