@@ -13,6 +13,7 @@
 **A comprehensive legal assistance platform powered by AI, providing instant legal advice, case law search, and more - all trained on Indian law.**
 
 [Features](#-features) • [Installation](#-installation--setup) • [Usage](#-usage-guide)
+<img src="Banner Images/res1.jpg" alt="Kanoonu Ai Landing Page">
 </div>
 
 ---
